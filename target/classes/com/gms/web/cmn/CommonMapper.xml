@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.gms.web.cmm.CommonMapper">
+	<resultMap id="attach" type="com.gms.web.brd.Attach">
+	<id property="seq" column="seq"/>
+	<result property="name" column="name"/>
+	<result property="title" column="title"/>
+	<result property="content" column="content"/>
+	</resultMap>
+	<resultMap type="com.gms.web.mbr.Member" id="mbr">
+	<id property="memberId" column="MEMBER_ID"></id>
+	<result property="teamId" column="teamId"/>
+	<result property="name" column="name"/>
+	<result property="ssn" column="ssn"/>
+	<result property="roll" column="roll"/>
+	<result property="pw" column="pw"/>
+	<result property="age" column="age"/>
+	<result property="gender" column="gender"/>
+	</resultMap>
+	<resultMap id="board" type="java.util.HashMap"> <!-- import -->
+	<id property="bno" column="bno"></id>
+	<result property="title" column="title"/>
+	<result property="content" column="content"/>
+	<result property="writer" column="writer"/>
+	<result property="regdate" column="regdate"/>
+	<result property="viewcnt" column="viewcnt"/>
+	<result property="replycnt" column="replycnt"/>
+	<association property="mbr" column="MEMBER_ID">
+	<id property="memberId" column="MEMBERID"/>
+	<result property="teamId" column="teamId"/>
+	<result property="name" column="name"/>
+	<result property="ssn" column="ssn"/>
+	<result property="roll" column="roll"/>
+	<result property="pw" column="pw"/>
+	<result property="age" column="age"/>
+	<result property="gender" column="gender"/>
+	</association>
+	<!-- 조인걸꺼야 -->
+	<collection property="attachs" ofType="attach">
+	<id property="seq" column="seq"></id>
+	</collection>
+	</resultMap>
+	<!-- 아래가더편한방법 몽땅담기 -->
+<!-- 	<resultMap id="info" type="map"> 
+	<id property="seq" column="seq"/>
+	<result property="name" column="name"/>
+	<result property="ssn" column="ssn"/>
+	<result property="roll" column="roll"/>
+	<result property="pw" column="pw"/>
+	<result property="age" column="age"/>
+	<result property="gender" column="gender"/>
+	
+	</resultMap> -->
+ </mapper>
